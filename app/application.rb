@@ -18,10 +18,6 @@ class Application
           resp.write "#{item}\n"
       end
     end
-  elsif req.path.match(/add/)
-    search_term = req.params["q"]
-    resp.write   add_search(search_term)
-  end
     elsif req.path.match(/search/)
       search_term = req.params["q"]
       resp.write handle_search(search_term)
@@ -39,13 +35,6 @@ class Application
   def handle_search(search_term)
     if @@items.include?(search_term)
       return "#{search_term} is one of our items"
-    else
-      return "Couldn't find #{search_term}"
-    end
-  end
-  def add_search(search_term)
-    if @@items.include?(search_term)
-      @@cart <<  "#{search_term} "
     else
       return "Couldn't find #{search_term}"
     end
