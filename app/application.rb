@@ -23,11 +23,12 @@ class Application
       resp.write handle_search(search_term)
       elsif req.path.match(/add/)
         added= req.params["item"]
-    if @@items.include? added
+    elsif @@items.include? added
         @@cart  <<  added
   resp.write  "#{added}"
 else
   resp.write "We don't have that item"
+end
     else
       resp.write "Path Not Found"
     end
